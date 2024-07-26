@@ -24,7 +24,7 @@ function App() {
           </Card>
         ) : (
           <CardHeader>
-            <CardTitle>To get started Connect a wallet</CardTitle>
+            <CardTitle>Aptos Sandbox</CardTitle>
           </CardHeader>
         )}
       </div>
