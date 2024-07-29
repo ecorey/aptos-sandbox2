@@ -24,7 +24,7 @@ function App() {
           </Card>
         ) : (
           <CardHeader>
-            <CardTitle>Aptos Sandbox</CardTitle>
+            <CardTitle>Sandbox</CardTitle>
           </CardHeader>
         )}
       </div>
