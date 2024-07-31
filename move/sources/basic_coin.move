@@ -12,7 +12,7 @@ module 0xCAFE::basic_coin {
     }
 
 
-    public fun mint(account: &signer, value: u64) {
+    public fun mint_one(account: &signer, value: u64) {
         move_to(account, Coin {value})
     }
 
@@ -20,11 +20,11 @@ module 0xCAFE::basic_coin {
 
     // TEST
     #[test(account = 0xCAFE)]
-    fun test_mint_10(account: &signer) aquires Coin {
+    fun test_mint_10(account: &signer) acquires Coin {
 
         let addr = signer::address_of(account);
-        
-        mint(account, 10);
+
+        mint_one(account, 10);
         
         assert!(borrow_global<Coin>(addr).value = 10, 0);
     }
