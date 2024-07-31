@@ -1,10 +1,10 @@
 [package]
-name = "boilerplate_template"
-version = "1.0.0"
+name = "basic_coin"
+version = "0.0.0"
 authors = []
 
 [addresses]
-module_addr = "_"
+module_addr = "0xCAFE"
 
 [dependencies]
 AptosFramework = { git = "https://github.com/aptos-labs/aptos-core.git", rev = "mainnet", subdir = "aptos-move/framework/aptos-framework" }
