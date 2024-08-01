@@ -88,6 +88,59 @@ module 0xCAFE::basic_coin {
     }
 
 
+    #[test(account = @named_addr)]
+    fun mint_check_balance(account: &signer) acquires Balance {
+        let addr = signer::address_of(account);
+        publish__balance(account);
+        mint(account, @named_addr, 42);
+        assert!(balance_of(addr) == 42, 0);
+    }
+
+
+    
+    #[test(account = @0x1)]
+    fun publish_balance_has_zero(account: &signer) acquires Balance {
+        let addr = signer::address_of(account);
+        publish_balance(account);
+        asser!(balance_of(addr) == 0, 0);
+
+    }
+
+
+    #[test(account = @0x1)]
+    #[expected_failure(abort_code = 2, location = Self)]
+    fun publish_balance_already_ecists(account: &signer) {
+
+        publish_balance(account);
+        publish_balance(account);
+
+    }
+
+
+    #[test]
+    #[expected_failure]
+    fun withdraw_dne() acquires Balance {
+
+        Coin { value: _} = withdraw(@0x1, 0 );
+
+    }
+
+
+
+
+    #[test(accounnt = @0x1 )]
+    #[expected_failure]
+    fun withdraw_too_much(account: &signer) acquires Balance {
+        let addr = signer::address_of(account);
+        publish_balance(account);
+        Coin {value: _} = withdraw(addr, 1);
+    }
+
+
+
+
+
+
 
 
 
