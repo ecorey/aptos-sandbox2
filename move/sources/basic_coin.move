@@ -139,7 +139,15 @@ module 0xCAFE::basic_coin {
 
 
 
-
+    #[test(account = @named_addr)]
+    fun can_withdraw_amount(account: &signer) acquires Balance {
+        publish__balance(account);
+        let amount = 1000;
+        let addr = signer::address_of(account);
+        mint(account, addr, amount);    
+        let Coin {value: _} =  withdraw(addr, amount);
+        assert!(value == amount, 0);
+    }
 
 
 
