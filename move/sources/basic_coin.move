@@ -31,8 +31,16 @@ module named_addr::basic_coin {
 
 
 
+    // public fun mint<CoinType: drop>(mint_addr: address, amount: u64, _witness: CoinType) acquires Balance {
+    //     // deposit(mint_addr, Coin<CoinType> { value: amount });
+    // }
 
 
+    
+
+    public fun balance_of<CoinType>(owner: address): u64 acquires Balance {
+        borrow_global<Balance<CoinType>>(owner).coin.value
+    }
 
 
 
