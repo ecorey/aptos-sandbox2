@@ -5,6 +5,8 @@ authors = []
 
 [addresses]
 module_addr = "0xCAFE"
+named_addr = "0xCAFE"
+
 
 [dependencies.AptosStdlib]
 git = 'https://github.com/aptos-labs/aptos-core.git'
