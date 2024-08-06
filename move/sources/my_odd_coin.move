@@ -19,8 +19,30 @@ module named_addr::my_odd_coin {
     }
 
 
+    // UNIT TESTS
+
+    #[test(from = @0x42, to = @0x10)]
+    fun test_odd_success(from: signer, to: signer) {
+        setup_and_mint(&from, 42);
+        setup_and_mint(&to, 10);
+
+        transfer(&from, @0x10, 7);
 
 
+        assert!(basic_coin::balance_of<MyOddCoin>(@0x42) == 35, 0);
+        assert!(basic_coin::balance_of<MyOddCoin>(@0x10) == 17, 0);
+
+    }
+
+
+    #[test(from = @0x42, to = @0x10)]
+    #[expected_failure]
+    fun test_not_odd_failure(from: signer, to: signer) {
+        setup_and_mint(&from, 42);
+        setup_and_mint(&to, 10);
+
+        transfer(&from, @0x10, 8);
+    }
 
 
 
